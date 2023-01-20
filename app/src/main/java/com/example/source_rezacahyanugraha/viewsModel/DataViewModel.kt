@@ -16,7 +16,6 @@ class DataViewModel(private val dataRepository: DataRepository) : ViewModel() {
     init {
         viewModelScope.launch(Dispatchers.IO) {
             dataRepository.getData()
-//            dataRepository.deleteData()
         }
     }
 

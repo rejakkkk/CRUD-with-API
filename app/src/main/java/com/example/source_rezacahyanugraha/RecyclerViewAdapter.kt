@@ -16,6 +16,7 @@ class RecyclerViewAdapter(val listener: RowClickListener): RecyclerView.Adapter<
         this.dataList = dataList
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int

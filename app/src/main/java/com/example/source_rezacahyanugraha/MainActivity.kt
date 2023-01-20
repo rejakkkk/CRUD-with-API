@@ -30,23 +30,8 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListener {
         recyclerViewAdapter = RecyclerViewAdapter(this)
         recyclerview.adapter = recyclerViewAdapter
 
-
-//        dataViewsModel.data.observe(this,{
-////            Log.d("ABC", "onCreate: ${it.toString()}")
-//            it.data.iterator().forEach { data ->
-//
-//                Log.d("ABC", "nik: ${data.nik}\nnama ${data.nama}")
-//            }
-//        })
         initViewModel()
     }
-
-//    private fun initRecyclerView(view: View){
-//        val recyclerview = view.findViewById<RecyclerView>(R.id.recyclerView)
-//        recyclerview.layoutManager = LinearLayoutManager(this)
-//        recyclerViewAdapter = RecyclerViewAdapter()
-//        recyclerview.adapter = recyclerViewAdapter
-//    }
 
     private fun initViewModel(){
         val repository = (application as MyApplication).dataRepository

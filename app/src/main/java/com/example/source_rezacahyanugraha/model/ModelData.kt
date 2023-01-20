@@ -5,8 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "data")
 data class ModelData (
-        @PrimaryKey
-//        (autoGenerate = true) var id: Int=0,
+        @PrimaryKey (autoGenerate = true) var id: Int=0,
         val nik:String,
         val nama: String,
         val umur: String,

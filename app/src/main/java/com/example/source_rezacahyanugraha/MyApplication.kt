@@ -19,6 +19,5 @@ class MyApplication: Application() {
 
         dataRepository = DataRepository(apiInterface, database)
 
-
     }
 }

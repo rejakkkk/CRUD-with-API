@@ -27,11 +27,4 @@ class DataRepository(
         }
     }
 
-//    suspend fun deleteData(){
-    //        val result = apiInterface.getData()
-    //        if (result.body() != null){
-    //
-    //        }
-    //    }
-
 }
