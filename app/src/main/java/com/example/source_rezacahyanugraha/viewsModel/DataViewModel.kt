@@ -20,4 +20,16 @@ class DataViewModel(private val dataRepository: DataRepository) : ViewModel() {
     }
 
     val data: LiveData<DataResponse> get() = dataRepository.data
+
+    fun deleteData(data: ModelData) {
+        viewModelScope.launch(Dispatchers.IO) {
+            dataRepository.deleteData(data)
+        }
+    }
+
+    fun addData(data: ModelData){
+        viewModelScope.launch(Dispatchers.IO) {
+            dataRepository.insertData(data)
+        }
+    }
 }

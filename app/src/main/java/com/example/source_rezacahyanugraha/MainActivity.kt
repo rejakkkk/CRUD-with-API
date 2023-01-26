@@ -1,17 +1,14 @@
 package com.example.source_rezacahyanugraha
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
+import android.widget.Button
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.source_rezacahyanugraha.api.ApiInterface
-import com.example.source_rezacahyanugraha.api.RetrofitNetwork
 import com.example.source_rezacahyanugraha.model.ModelData
-import com.example.source_rezacahyanugraha.repository.DataRepository
 import com.example.source_rezacahyanugraha.viewsModel.DataViewModel
 import com.example.source_rezacahyanugraha.viewsModel.DataViewModelFactory
 
@@ -20,6 +17,7 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListener {
 
     private lateinit var recyclerViewAdapter: RecyclerViewAdapter
     private lateinit var dataViewsModel:DataViewModel
+    private lateinit var btnAdd:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +28,12 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListener {
         recyclerViewAdapter = RecyclerViewAdapter(this)
         recyclerview.adapter = recyclerViewAdapter
 
+        btnAdd = findViewById(R.id.btnAdd)
+        btnAdd.setOnClickListener {
+            val intent = Intent(this, AddActivity::class.java)
+            startActivity(intent)
+        }
+
         initViewModel()
     }
 
@@ -39,13 +43,13 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListener {
         dataViewsModel = ViewModelProvider(this,DataViewModelFactory(repository)).get(DataViewModel::class.java)
         dataViewsModel.data.observe(this, Observer {
             recyclerViewAdapter.setDataList(it.data)
-            recyclerViewAdapter.notifyDataSetChanged()
         })
 
     }
 
     override fun onDeleteClickListener(data: ModelData) {
-
+        recyclerViewAdapter.deleteData(data)
+        dataViewsModel.deleteData(data)
     }
 
     override fun onItemClickListener(data: ModelData) {

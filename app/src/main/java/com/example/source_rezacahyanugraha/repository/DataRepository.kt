@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.source_rezacahyanugraha.api.ApiInterface
 import com.example.source_rezacahyanugraha.model.DataResponse
+import com.example.source_rezacahyanugraha.model.ModelData
 import com.example.source_rezacahyanugraha.room.DataDatabase
 
 
@@ -25,6 +26,14 @@ class DataRepository(
 
             modelLiveData.postValue(result.body())
         }
+    }
+
+    suspend fun deleteData(data:ModelData){
+        dataDatabase.dataDao().deleteDatas(data)
+    }
+
+    suspend fun insertData(data: ModelData){
+        dataDatabase.dataDao().insertDataSingle(data)
     }
 
 }

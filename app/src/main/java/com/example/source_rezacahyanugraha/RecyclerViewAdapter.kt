@@ -17,6 +17,11 @@ class RecyclerViewAdapter(val listener: RowClickListener): RecyclerView.Adapter<
         notifyDataSetChanged()
     }
 
+    fun deleteData(data: ModelData) {
+        dataList = dataList?.filter { it.nik != data.nik }
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
